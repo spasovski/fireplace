@@ -1,5 +1,5 @@
+from datetime import date, timedelta
 import random
-
 
 dummy_text = 'foo bar zip zap cvan fizz buzz something something'.split()
 
@@ -93,6 +93,7 @@ def app(name, slug, **kwargs):
 
 
 user_names = ['Cvan', 'Basta', 'Potch', 'Queen Krupa']
+year_ago = date.today() - timedelta(days=365)
 
 def rating(has_reply=False):
     return {
@@ -102,5 +103,6 @@ def rating(has_reply=False):
         'body': ptext(20),
         'reply': None if not has_reply else rating(),
         'for_old_version': False,  # False or the old version number
-        'is_flagged': False
+        'is_flagged': False,
+        'posted': year_ago.strftime('%b %d %Y %H:%M:%S')
     }
