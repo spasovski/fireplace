@@ -1,6 +1,6 @@
 define('ratings',
-    ['capabilities', 'l10n', 'login', 'utils', 'urls', 'user', 'z', 'templates', 'requests', 'notification'],
-    function(capabilities, l10n, login, utils, urls, user, z, nunjucks) {
+    ['capabilities', 'l10n', 'login', 'utils', 'urls', 'user', 'z', 'templates', 'requests', 'notification', 'settings'],
+    function(capabilities, l10n, login, utils, urls, user, z, nunjucks, requests, notification, settings) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -94,21 +94,29 @@ define('ratings',
         })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250));
     }
 
-    function flagReview(reviewEl) {
-        var overlay = utils.makeOrGetOverlay('flag-review');
-        overlay.addClass('show').trigger('overlayloaded')
-        overlay.one('click', '.cancel', utils._pd(function() {
-            overlay.removeClass('show');
+    function flagReview($reviewEl) {
+        var $overlay = utils.makeOrGetOverlay('flag-review');
+        $overlay.addClass('show').trigger('overlayloaded');
+
+        $overlay.one('click', '.cancel', utils._pd(function() {
+            $overlay.removeClass('show');
         })).one('click', '.menu a', utils._pd(function(e) {
-            var flag = $(e.target).attr('href').slice(1),
-                actionEl = reviewEl.find('.actions .flag');
-            overlay.removeClass('show');
-            actionEl.text(gettext('Sending report...'));
-            require('requests').post(
-                reviewEl.data('flag-url'),
-                {flag: flag}
+            var $actionEl = $reviewEl.find('.actions .flag'),
+                reason = $(e.target).attr('href').replace('#', ''),
+                oldActionText = $actionEl.text();
+
+            $overlay.removeClass('show');
+            $actionEl.text(gettext('Sending report...'));
+            requests.post(
+                settings.api_url + $reviewEl.data('report-uri'),
+                {flag: reason}
             ).then(function() {
-                actionEl.replaceWith(gettext('Flagged for review'));
+                $actionEl.replaceWith(gettext('Flagged for review'));
+            }).fail(function() {
+                notification.notification(
+                    {message: gettext('Report review operation failed')}
+                );
+                $actionEl.remove();
             });
         }));
     }
