@@ -9,6 +9,7 @@ var routes = [
     {pattern: '^/app/([^/<>"\']+)$', view_name: 'app'},
     {pattern: '^/search$', view_name: 'search'},
     {pattern: '^/category/([^/<>"\']+)$', view_name: 'category'},
+    {pattern: '^/category/([^/<>"\']+)/featured$', view_name: 'category_featured'},
     {pattern: '^/settings$', view_name: 'settings'},
     {pattern: '^/purchases$', view_name: 'purchases'},
     {pattern: '^/abuse$', view_name: 'abuse'},

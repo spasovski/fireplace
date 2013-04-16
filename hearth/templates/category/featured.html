@@ -1,0 +1,27 @@
+{% include '_macros/market_tile.html' %}
+{% include '_macros/more_button.html' %}
+
+{% set endpoint = api('category', [category]) %}
+
+<section id="search-results" class="main full c">
+  {% defer (url=endpoint, pluck='creatured', as='app', paginate='ol.listing') %}
+    <ol class="container listing c">
+      {% for result in this %}
+        <li class="item result app c">
+          {{ market_tile(result, link=true, force_button=true, src='creatured') }}
+        </li>
+      {% endfor %}
+
+      {# Render the more button if there's another page of results #}
+      {% if response.meta.next %}
+        {{ more_button(response.meta.next) }}
+      {% endif %}
+    </ol>
+  {% placeholder %}
+    <p class="spinner alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No featured apps in this category') }}
+    </p>
+  {% end %}
+</section>
