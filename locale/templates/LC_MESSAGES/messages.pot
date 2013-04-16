@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-16T21:34:48.876Z\n"
+"POT-Creation-Date: 2013-04-16T22:12:07.409Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -402,6 +402,10 @@ msgstr ""
 
 #: hearth/media/js/views/app.js:35
 msgid "App Details"
+msgstr ""
+
+#: hearth/media/js/views/featured.js:10
+msgid "Featured Apps"
 msgstr ""
 
 #: hearth/media/js/views/not_found.js:9
