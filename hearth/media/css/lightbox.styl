@@ -72,6 +72,16 @@
                 spinner-base-image();
             }
         }
+        .rotateme {
+            img {
+                transform(unquote('rotate(90deg)'));
+            }
+            // The alternative is really messy. `top: 0;left: -670px` and
+            // their placement will be off if mixed rotated and regular.
+            .caption {
+                display: none;
+            }
+        }
     }
     .caption {
         font-size: 18px;
@@ -106,5 +116,16 @@
 @media $retina {
     #lightbox .content li.loading {
         spinner-base-image('retina');
+    }
+}
+
+@media $at-least-desktop {
+    #lightbox .content .rotateme {
+        img {
+            transform(none);
+        }
+        .caption {
+            display: block;
+        }
     }
 }

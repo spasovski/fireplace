@@ -4,7 +4,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'z'],
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
     var $content = $lightbox.find('.content');
-    var currentApp;
     var previews;
     var slider;
 
@@ -20,10 +19,8 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'z'],
         if (!$tile.hasClass('mkt-tile')) return;
 
         var product = $tile.data('product');
-        var id = product.id;
 
-        if (id != currentApp || !slider) {
-            currentApp = id;
+        if (!slider) {
             previews = product.previews;
             renderPreviews();
         }
@@ -82,6 +79,10 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'z'],
                 i.onload = function() {
                     $el.removeClass('loading');
                     $el.append(i);
+                    // This check has to happen here! Has to. Yes.
+                    if (i.width > i.height) {
+                        $el.addClass('rotateme');
+                    }
                 };
                 i.onerror = function() {
                     $el.removeClass('loading');
