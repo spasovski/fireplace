@@ -27,7 +27,9 @@ define('views/app',
     }));
 
     return function(builder, args) {
-        builder.start('detail/main.html', {slug: args[0]});
+        builder.start('detail/main.html', {slug: args[0]}).done(function() {
+            z.page.trigger('populatetray');
+        });
 
         builder.z('type', 'leaf');
         builder.z('reload_on_login', true);
