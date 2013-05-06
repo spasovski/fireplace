@@ -16,16 +16,17 @@ define('forms', ['z'], function(z) {
         });
     });
 
-    function toggleReviewFormState($formElm, enabled) {
+    // Use this if you want to disable form inputs while the post/put happens.
+    function toggleSubmitFormState($formElm, enabled) {
         if (enabled) {
-            $formElm.find('textarea, button').prop('disabled', false);
+            $formElm.find('textarea, button, input').prop('disabled', false);
             $formElm.find('.ratingwidget').removeClass('disabled');
         } else {
-            $formElm.find('textarea, button').prop('disabled', true);
+            $formElm.find('textarea, button, input').prop('disabled', true);
             $formElm.find('.ratingwidget').addClass('disabled');
         }
     }
 
-    return {toggleReviewFormState: toggleReviewFormState};
+    return {toggleSubmitFormState: toggleSubmitFormState};
 
 });
