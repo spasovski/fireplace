@@ -34,9 +34,11 @@ define('views/feedback',
     // The modal is responsive even if this handler isn't removed.
     if (caps.widescreen) {
         z.page.on('loaded', function() {
-            z.page.append(
-                nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
-            );
+            if (!$('.main.feedback').length) {
+                z.page.append(
+                    nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
+                );
+            }
         });
         z.body.on('click', '.submit-feedback', function(e) {
             e.preventDefault();

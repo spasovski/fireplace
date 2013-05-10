@@ -48,6 +48,11 @@ define('views/app',
             builder.z('title', builder.results['app-data'].name);
             z.page.trigger('populatetray');
             overflow.init();
+            if (caps.widescreen && !$('.report-abuse').length) {
+                z.page.append(
+                    nunjucks.env.getTemplate('detail/abuse.html').render(require('helpers'))
+                );
+            }
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
             if (reviews.length < 3) return;
