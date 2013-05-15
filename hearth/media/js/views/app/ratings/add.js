@@ -18,10 +18,22 @@ define('views/app/ratings/add',
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
-            $('.compose-review').removeClass('modal');
-            $('.compose-review .cancel').on('click', function() {
+            var $reviewBox = $('.compose-review');
+
+            $reviewBox.removeClass('modal');
+            $reviewBox.find('.cancel').on('click', function() {
                 z.page.trigger('navigate', urls.reverse('app', [slug]));
             });
+
+            // Scroll the page down to make the send/cancel buttons visible.
+            $reviewBox.find('.rating').on('click touchend', function() {
+                $reviewBox.find('textarea')[0].focus();
+            });
+            if (scrollTo) {
+                $reviewBox.find('textarea').on('focus', function() {
+                    setTimeout(function() {window.scrollTo(0, 200);}, 350);
+                });
+            }
         });
 
         builder.z('type', 'leaf');

@@ -53,6 +53,12 @@ define('views/app/ratings/edit',
             $('.edit-review-form .cancel').click(utils._pd(function() {
                 z.page.trigger('navigate', urls.reverse('app', [slug]));
             }));
+
+            if (scrollTo) {
+                $('.compose-review textarea').on('focus', function() {
+                    setTimeout(function() {window.scrollTo(0, 200);}, 350);
+                });
+            }
         });
 
         // If we hit the API and find out that there's no review for the user,
