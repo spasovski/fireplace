@@ -38,7 +38,16 @@ define('views/app',
 
     return function(builder, args) {
         var slug = args[0];
-        builder.start('detail/main.html', {slug: slug});
+        builder.start('detail/main.html', {slug: slug}).done(function() {
+            if (!require('user').logged_in()) {
+                $('#add-review').text(gettext('Login to Review')).on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    require('login').login();
+                });
+                return;
+            }
+        });
 
         builder.z('type', 'leaf');
         builder.z('reload_on_login', true);
