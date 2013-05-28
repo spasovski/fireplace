@@ -27,15 +27,14 @@ define('views/app/ratings/add',
                 if (textarea) {
                     textarea.focus();
                 }
+                if (scrollTo && !caps.widescreen()) {
+                    // Wait for the keyboard to shrink the window height.
+                    // Would be awesome if FFOS fired a `scrollbar appeared` event.
+                    setTimeout(function() {
+                        window.scrollTo(0, 200);
+                    }, 350);
+                }
             });
-
-            if (scrollTo && !caps.widescreen()) {
-                console.log('scrollTo');
-                $reviewBox.find('textarea').on('focus', function() {
-                    console.log('focus');
-                    window.scrollTo(0, 200);
-                });
-            }
         });
 
         builder.z('type', 'leaf');

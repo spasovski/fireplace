@@ -62,13 +62,14 @@ define('views/app/ratings/edit',
                 if (textarea) {
                     textarea.focus();
                 }
+                if (scrollTo && !caps.widescreen()) {
+                    // Wait for the keyboard to shrink the window height.
+                    // Would be awesome if FFOS fired a `scrollbar appeared` event.
+                    setTimeout(function() {
+                        window.scrollTo(0, 200);
+                    }, 350);
+                }
             });
-
-            if (scrollTo && !caps.widescreen()) {
-                $reviewBox.find('textarea').on('focus', function() {
-                    window.scrollTo(0, 200);
-                });
-            }
         });
 
         // If we hit the API and find out that there's no review for the user,
