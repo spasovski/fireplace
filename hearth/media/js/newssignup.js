@@ -7,11 +7,14 @@ define('newssignup',
     var gettext = l10n.gettext;
     var notify = n.notification;
 
+    // Marketplace newsletter supported languages (Jessilyn Davis)
+    var langs = ['us', 'br', 'es', 'pl'];
+
     // Init newsletter signup checking system.
     function init() {
         // Toggle the conditions below if you want to test on Desktop.
         //if (!user.logged_in()) return;
-        if (!user.logged_in() || !caps.firefoxOS) return;
+        if (!user.logged_in() || !caps.firefoxOS || langs.indexOf(user.get_setting('region')) == -1) return;
 
         var counter = +storage.getItem('newscounter');
         if (counter == 4) return;
