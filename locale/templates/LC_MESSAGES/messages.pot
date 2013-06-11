@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-10T22:38:11.469Z\n"
+"POT-Creation-Date: 2013-06-11T22:14:19.306Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,6 +121,7 @@ msgstr ""
 
 #: hearth/templates/detail/abuse.html:5
 #: hearth/templates/detail/main.html:175
+#: hearth/templates/detail/purchases.html:68
 #: hearth/media/js/views/app/abuse.js:33
 msgid "Report Abuse"
 msgstr ""
@@ -147,17 +148,21 @@ msgstr ""
 
 #: hearth/templates/detail/main.html:14
 #: hearth/templates/detail/main.html:15
+#: hearth/templates/detail/purchases.html:18
+#: hearth/templates/detail/purchases.html:19
 #: hearth/media/js/views/app.js:60
 msgid "Loading..."
 msgstr ""
 
 #: hearth/templates/detail/main.html:24
+#: hearth/templates/detail/purchases.html:28
 #: hearth/templates/errors/fragment.html:1
 #: hearth/templates/not_found.html:2
 msgid "Oh no!"
 msgstr ""
 
 #: hearth/templates/detail/main.html:25
+#: hearth/templates/detail/purchases.html:29
 #: hearth/templates/not_found.html:3
 msgid "The page you were looking for was not found."
 msgstr ""
@@ -221,19 +226,23 @@ msgid "Sign in to Review"
 msgstr ""
 
 #: hearth/templates/detail/main.html:147
+#: hearth/templates/detail/purchases.html:40
 msgid "Support Email"
 msgstr ""
 
 #: hearth/templates/detail/main.html:153
+#: hearth/templates/detail/purchases.html:46
 msgid "Support Site"
 msgstr ""
 
 #: hearth/templates/detail/main.html:158
+#: hearth/templates/detail/purchases.html:51
 msgid "Homepage"
 msgstr ""
 
 #: hearth/templates/detail/main.html:164
 #: hearth/templates/detail/privacy.html:3
+#: hearth/templates/detail/purchases.html:57
 #: hearth/templates/footer.html:29
 #: hearth/templates/privacy.html:2
 #: hearth/templates/settings/feedback.html:22
@@ -243,6 +252,7 @@ msgid "Privacy Policy"
 msgstr ""
 
 #: hearth/templates/detail/main.html:170
+#: hearth/templates/detail/purchases.html:63
 msgid "Statistics"
 msgstr ""
 
@@ -260,6 +270,10 @@ msgstr ""
 
 #: hearth/templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
+msgstr ""
+
+#: hearth/templates/detail/purchases.html:8
+msgid "Thank you for purchasing"
 msgstr ""
 
 #: hearth/templates/errors/fragment.html:2
@@ -534,7 +548,7 @@ msgid "Category"
 msgstr ""
 
 #: hearth/media/js/install.js:34
-#: hearth/media/js/payments/payments.js:81
+#: hearth/media/js/payments/payments.js:86
 msgid "Payment cancelled"
 msgstr ""
 
@@ -570,7 +584,7 @@ msgstr ""
 msgid "There was an error submitting your newsletter sign up request"
 msgstr ""
 
-#: hearth/media/js/payments/payments.js:84
+#: hearth/media/js/payments/payments.js:89
 msgid "Payment failed. Try again later."
 msgstr ""
 
@@ -614,6 +628,10 @@ msgstr ""
 
 #: hearth/media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
+msgstr ""
+
+#: hearth/media/js/views/app/purchases.js:21
+msgid "Purchases"
 msgstr ""
 
 #: hearth/media/js/views/app/ratings/edit.js:23
