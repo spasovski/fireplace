@@ -51,7 +51,7 @@ define('views/homepage',
                 return;
             }
 
-            clamper.clamp($('.collection + .desc'), 7);
+            clamper.clamp(document.querySelector('.collection + .desc'), 7);
 
             if (!shelf.apps.length) return;
 

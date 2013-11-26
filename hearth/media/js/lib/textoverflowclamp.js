@@ -7,7 +7,7 @@
   * http://codepen.io/chriscoyier/pen/iBtep
   */
 
-define('textoverflowclamp', [], function() {
+define('textoverflowclamp', ['jquery'], function($) {
     var clamp, $measure, text, lineWidth,
         lineStart, lineCount, wordStart,
         $line, lineText, wasNewLine;
@@ -16,7 +16,9 @@ define('textoverflowclamp', [], function() {
     // element to get its style
     $measure = $('<span>').addClass('msr');
 
-    clamp = function($el, lineClamp) {
+    clamp = function(el, lineClamp) {
+        var $el = $(el);
+
         // reset to safe starting values
         lineStart = wordStart = 0;
         lineCount = 1;

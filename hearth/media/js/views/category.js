@@ -30,7 +30,7 @@ define('views/category',
             sort: params.sort,
             app_cast: app_models.cast
         }).done(function() {
-            clamper.clamp($('.collection + .desc'), 7);
+            clamper.clamp(document.querySelector('.collection + .desc'), 7);
         });
 
         tracking.setPageVar(5, 'Category', category, 3);
