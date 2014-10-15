@@ -3,15 +3,16 @@
 /*
  * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
  *
- * <elm class="button">Normal Button</elm>
- * <elm class="button btn">Primary Call to Action</elm>
- * <elm class="button action">Positive Action like Yes or Launch</elm>
- * <elm class="button alt">Alternate Style - External Links?</elm>
- * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
- * <elm class="button support">Support Action - Less Visual Emphasis</elm>
+ * <elm ui-button>Normal Button</elm>
+ * <elm ui-button="btn">Primary Call to Action (probably needs a new name)</elm>
+ * <elm ui-button="action">Positive Action like Yes or Launch</elm>
+ * <elm ui-button="alt">Alternate Style - External Links?</elm>
+ * <elm ui-button="cancel">Negative Action like Cancel or Delete</elm>
+ * <elm ui-button="support">Support Action - Less Visual Emphasis</elm>
  *
  * All button sizes are $medium unless overridden by a compound class: 't', 's', 'l'.
  * On larger screens "button fat" will give you a 100% width button.
+ * Use 'primo' buttons for extra horizontal padding.
  *
  */
 
@@ -59,7 +60,7 @@ $btn-install-width = 90px;
 // Install button font-size.
 $install-font-size = 12px;
 
-.button {
+[ui-button] {
     background: $btn;
     border: 0;
     border-radius: 5px;
@@ -84,111 +85,124 @@ $install-font-size = 12px;
         background: $btn-act;
         box-shadow: none;
     }
-    &.btn {
-        background: $btn;
-        box-shadow: 0 2px $btn-act;
+}
 
-        &:hover, &:focus { background: $btn-hvr; }
-        &:active { background: $btn-act; }
-    }
-    &.action {
-        background: $action;
-        box-shadow: 0 2px $action-act;
+[ui-button~='btn'] {
+    background: $btn;
+    box-shadow: 0 2px $btn-act;
 
-        &:hover, &:focus { background: $action-hvr; }
-        &:active { background: $action-act; }
-    }
-    &.alt {
-        background: $alt;
-        box-shadow: 0 2px $alt-act;
+    &:hover, &:focus { background: $btn-hvr; }
+    &:active { background: $btn-act; }
+}
 
-        &:hover, &:focus { background: $alt-hvr; }
-        &:active { background: $alt-act; }
-    }
-    &.cancel {
-        background: $cancel;
-        box-shadow: 0 2px $cancel-act;
+[ui-button~='action'] {
+    background: $action;
+    box-shadow: 0 2px $action-act;
 
-        &:hover, &:focus { background: $cancel-hvr; }
-        &:active { background: $cancel-act; }
-    }
-    &.support {
-        background: $support;
-        box-shadow: 0 2px $support-act;
+    &:hover, &:focus { background: $action-hvr; }
+    &:active { background: $action-act; }
+}
 
-        &:hover, &:focus { background: $support-hvr; }
-        &:active { background: $support-act; }
-    }
-    &.disabled,
-    &[disabled] {
-        background: $disabled;
-        box-shadow: none;
-    }
-    &[disabled], &.disabled,
-    &.purchasing, &.purchased,
-    &.installing, &.installed {
-        pointer-events: none;
-    }
-    &.installed, &.purchased, &.incompatible {
-        pointer-events: auto;
-    }
-    &.t, &.product {
-        height: $tiny;
-        line-height: $tiny;
-    }
-    &.s {
-        height: $small;
-        line-height: $small;
-    }
-    &.l {
-        height: $large;
-        line-height: $large;
-    }
+[ui-button~='alt'] {
+    background: $alt;
+    box-shadow: 0 2px $alt-act;
 
-    // Waiting/Loading spinner.
-    &.loading-submit {
-        position: relative;
+    &:hover, &:focus { background: $alt-hvr; }
+    &:active { background: $alt-act; }
+}
 
-        &:after {
-            content: "";
-            display: block;
-            spinner('absolute alt');
-            top: 8px;
-        }
-    }
-    &.product {
-        padding: 0 32px;
-    }
-    .spin {
-        display: inline-block;
-        spinner('install');
-    }
-    // Primary CTA buttons with extra padding. Like "Write a Review" on the reviews page.
-    &.primo {
-        padding: 0 30px;
+[ui-button~='cancel'] {
+    background: $cancel;
+    box-shadow: 0 2px $cancel-act;
+
+    &:hover, &:focus { background: $cancel-hvr; }
+    &:active { background: $cancel-act; }
+}
+
+[ui-button~='support'] {
+    background: $support;
+    box-shadow: 0 2px $support-act;
+
+    &:hover, &:focus { background: $support-hvr; }
+    &:active { background: $support-act; }
+}
+
+[ui-button~='disabled'],
+[ui-button][disabled] {
+    background: $disabled;
+    box-shadow: none;
+}
+
+[ui-button][disabled],
+[ui-button~='disabled'],
+[ui-button~='purchasing'],
+[ui-button~='purchased'],
+[ui-button~='installing'] {
+    pointer-events: none;
+}
+
+[ui-button~='installed'],
+[ui-button~='purchased'],
+[ui-button~='incompatible'] {
+    pointer-events: auto;
+}
+
+// Button height sizes.
+[ui-button~='t'] {
+    height: $tiny;
+    line-height: $tiny;
+}
+
+[ui-button~='s'] {
+    height: $small;
+    line-height: $small;
+}
+
+[ui-button~='l'] {
+    height: $large;
+    line-height: $large;
+}
+
+// Waiting/loading spinner.
+[ui-button~='loading-submit'] {
+    position: relative;
+
+    &:after {
+        content: "";
+        display: block;
+        spinner('absolute alt');
+        top: 8px;
     }
 }
 
+[ui-button~='product'],
+[ui-button~='primo'] {
+    padding: 0 32px;
+}
+
+[ui-button~='spin'] {
+    display: inline-block;
+    spinner('install');
+}
+
 @media $retina {
-    .button {
-        &.loading-submit:after {
-            spinner-alt-image('retina');
-        }
-        .spin {
-            spinner-install-image('retina');
-        }
+    [ui-button~='loading-submit']:after {
+        spinner-alt-image('retina');
+    }
+    [ui-button~='spin'] {
+        spinner-install-image('retina');
     }
 }
 
 @media (max-width: 600px) {
-    .button.fat {
+    [ui-button~='fat'] {
         display: block;
         width: 100%;
     }
 }
 
 // Install buttons.
-.mkt-tile .install {
+.mkt-tile [ui-button~='install'] {
     // Unset many .button properties.
     bottom: -3px; // To compensate for the larger click target. Calculation: (24-34)/2 + 2
     box-shadow: none;
@@ -200,9 +214,6 @@ $install-font-size = 12px;
     position: absolute;
     right: 0;
 
-    &.install {
-        background: transparent;
-    }
     em {
         // This em becomes the visual button.
         background: $btn;
@@ -240,7 +251,8 @@ $install-font-size = 12px;
         background: $btn-act;
         box-shadow: none;
     }
-    &.spinning, &.purchasing {
+    &[ui-button~='spinning'],
+    &[ui-button~='purchasing'] {
         background: $btn-act;
         bottom: 0;
         height: $tiny;
@@ -255,7 +267,7 @@ $install-font-size = 12px;
 }
 
 // Install button launch state.
-.mkt-tile .launch {
+.mkt-tile [ui-button~='launch'] {
     em {
         background: $action;
         box-shadow: 0 2px $action-act;
@@ -277,7 +289,7 @@ $install-font-size = 12px;
     position: relative;
     width: 100%;
 
-    .button {
+    [ui-button] {
         display: block;
         margin: auto;
         padding: 0;
@@ -286,7 +298,7 @@ $install-font-size = 12px;
         &:not(.hide) + .spinner {
             display: none;
         }
-        &.hide {
+        &[ui-button~='hide'] {
             visibility: hidden;
         }
     }
