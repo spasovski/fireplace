@@ -44,15 +44,6 @@
     bottom: 15px;
 }
 
-.brand-landing {
-    &.full > div {
-        padding-top: 10px;
-    }
-    .app-list {
-        margin-top: 0;
-    }
-}
-
 .brand-landing-icon {
     border-radius: 128px;
     height: 64px;
@@ -70,19 +61,12 @@
     display: none;
 }
 
-@media $base-desktop {
+@media $base-tablet {
     .brand-landing-header-mobile {
         display: none;
     }
     .brand-landing-header-desktop {
-        margin-top: 22px;  // To get 40px. Combine with 18px #page padding.
         display: block;
-
-        h1 {
-            desktop_mega();
-            margin: 20px 0 40px;
-            text-align: center;
-        }
     }
 }
 
