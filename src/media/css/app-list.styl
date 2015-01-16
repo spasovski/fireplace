@@ -27,12 +27,29 @@ $desktop-tile-padding = 20px 50px;
     list-style: none;
     margin-top: 30px;
 
-    li:not(.loadmore) {
-        padding-top: 15px;
+    // Masking element to cover the last row's bottom border.
+    &:after {
+        background: $white;
+        bottom: 30px;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 0;
+        max-width: $desktop-content;
+        position: absolute;
+        width: 100%;
     }
-    li:not(.loadmore):not(:last-child) {
-        border-bottom: 1px solid $filters-border;
+    &.expanded {
+        .app-list-app {
+            padding-bottom: 40px;
+        }
     }
+}
+
+.app-list-app {
+    border-bottom: 1px solid $filters-border;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 
 .app-list-filters {
@@ -45,27 +62,24 @@ $desktop-tile-padding = 20px 50px;
 }
 
 @media $base-tablet {
+    .app-list,
+    .app-list.only-logged-in {
+        display-flex();
+    }
     .app-list {
+        flex-wrap: wrap;
         position: relative;
 
-        li:not(.loadmore) {
-            border-bottom: $border;
-            border-right: $border;
-            float: left;
-            padding: $desktop-tile-padding;
-            width: 50%;
-
-            &:nth-child(2n) {
-                border-right: 0;
-                padding-right: 0;
-            }
-            &:nth-child(2n + 1) {
-                padding-left: 0;
-            }
-            // Last 3 (thanks loadmore!).
-            &:nth-last-child(-n + 3) {
-                border-bottom: 0;
-            }
+        &.paginated .app-list-app:last-child {
+            border-right: 0;
+        }
+        &.expanded .app-list-app {
+            border-right: 0;
+            padding: 20px 0 40px;
+            width: 100%;
+        }
+        &:after {
+            bottom: 0;
         }
     }
     .app-list-filters {
@@ -73,6 +87,23 @@ $desktop-tile-padding = 20px 50px;
         border-bottom: 2px solid $filters-border;
         padding: 0 0 30px;
         width: $desktop-content;
+    }
+    .app-list-app {
+        border-bottom: $border;
+        border-right: $border;
+        padding: $desktop-tile-padding;
+        width: 50%;
+
+        &:nth-child(2n) {
+            border-right: 0;
+            padding-right: 0;
+        }
+        &:nth-child(2n + 1) {
+            padding-left: 0;
+        }
+        &:last-child {
+            border-right: 0;
+        }
     }
 }
 
@@ -83,26 +114,22 @@ $desktop-tile-padding = 20px 50px;
     .app-list {
         max-width: $desktop-content;
 
-        li:not(.loadmore) {
-            width: (100/3)%;
-
-            &:nth-child(2n),
-            &:nth-child(2n + 1) {
-                padding: $desktop-tile-padding;
-            }
-            &:nth-child(2n) {
-                border-right: $border;
-            }
-            &:nth-child(3n) {
+        &.paginated .app-list-app:last-child {
+            border-right: 0;
+        }
+        &.expanded {
+            .app-list-app {
                 border-right: 0;
-                padding-right: 0;
+                margin-bottom: 20px;
+                padding: 20px 10px 50px 0;
+                width: 50%;
+
+                &:nth-child(2n) {
+                    padding: 20px 0 20px 10px;
+                }
             }
-            &:nth-child(3n + 1) {
-                padding-left: 0;
-            }
-            // Last 4.
-            &:nth-last-child(-n + 4) {
-                border-bottom: 0;
+            .loadmore {
+                margin-top: -21px;
             }
         }
     }
@@ -117,6 +144,27 @@ $desktop-tile-padding = 20px 50px;
         }
         .spinner {
             top: 0;
+        }
+    }
+    .app-list-app {
+        width: (100/3)%;
+
+        &:nth-child(2n),
+        &:nth-child(2n + 1) {
+            padding: $desktop-tile-padding;
+        }
+        &:nth-child(2n) {
+            border-right: $border;
+        }
+        &:nth-child(3n) {
+            border-right: 0;
+            padding-right: 0;
+        }
+        &:nth-child(3n + 1) {
+            padding-left: 0;
+        }
+        &:last-child {
+            border-right: 0;
         }
     }
 }

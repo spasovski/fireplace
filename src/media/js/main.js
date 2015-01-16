@@ -14,6 +14,7 @@ define(
         'helpers',  // Must come before mostly everything else.
         'helpers_local',
         'apps_buttons',
+        'app_lists',
         'cache',
         'capabilities',
         'consumer_info',
