@@ -538,7 +538,8 @@ main:before {
             width: 232px;
 
             .desktop & {
-                background: url(../img/pretty/marketplace-beta-logo.svg) 0 50% no-repeat;
+                background: url(../img/pretty/marketplace-beta-logo.png) 0 50% no-repeat;
+                background-size: 232px auto;
             }
         }
         .persona {
@@ -618,5 +619,12 @@ main:before {
         a {
             padding: 0;
         }
+    }
+}
+
+@media $retina-tablet {
+    .desktop .site-header .wordmark {
+        background: url(../img/pretty/marketplace-beta-logo2X.png) 0 50% no-repeat;
+        background-size: 232px auto;
     }
 }
