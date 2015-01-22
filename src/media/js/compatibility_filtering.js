@@ -15,13 +15,14 @@ define('compatibility_filtering',
     // API endpoints where feature profile is enabled, if all conditions met.
     // See api_args() below.
     var ENDPOINTS_WITH_FEATURE_PROFILE = [
-        'category_landing','feed', 'feed-app', 'feed-brand', 'feed-collection',
-        'feed-items', 'feed-shelf', 'new_popular_search', 'search'
+        'category_landing', 'feed', 'feed-app', 'feed-brand', 'feed-collection',
+        'feed-items', 'feed-shelf', 'recommended', 'new_popular_search',
+        'search'
     ];
 
     var actual_dev = '';
     var actual_device = '';
-    var limit = 25;
+    var limit = 24;
     var device_filter_name;
     var key = 'device_filtering_preferences';
     var device_override;
@@ -55,7 +56,7 @@ define('compatibility_filtering',
         actual_device = capabilities.widescreen() ? 'tablet' : 'mobile';
     }
 
-    // For mobile phones, set limit to 10, otherwise use the default, 25.
+    // For mobile phones, set limit to 10, otherwise use the default, 24.
     if (actual_device == 'mobile' || actual_dev == 'firefoxos') {
         limit = 10;
     }
@@ -128,8 +129,7 @@ define('compatibility_filtering',
                 args.dev = '';
                 args.device = '';
             }
-        }
-        else {
+        } else {
             // If device_filtering_preferences[endpoint_name] does not exist or
             // is an 'empty' value, then we use the default filtering behaviour
             // with whatever dev and device are.

@@ -66,11 +66,19 @@ function parseQueryString(qs) {
     return vars;
 }
 
-// Check whether an API call was made during the test run. Note that it doesn't
-// make check *when* the call was made, so be careful when using it.
 function assertAPICallWasMade(url, params, msg) {
+    // Check if API call was made during test run.
+    // Does not check *when* the call was made so be careful when using it.
     function testFn(res) {
         var target = res.url.split('?');
+
+        // Log if the endpoint matches but not the params.
+        if (target[0] == url && !utils.equals(params, parseQueryString(target[1]))) {
+            console.log('API url param mismatch:');
+            console.log(JSON.stringify(params));
+            console.log(JSON.stringify(parseQueryString(target[1])));
+        }
+
         return target[0] == url && utils.equals(params, parseQueryString(target[1]));
     }
 
@@ -125,7 +133,7 @@ function fake_login() {
         window.require('user').set_token("it's fine, it's fine");
         window.require('user').update_apps({
             'installed': [],
-            'developed': [424242],  // Hardcoded in flue as the id for the 'developer' app.
+            'developed': [424242],  // Hard-coded ID from the mock API.
             'purchased': []
         });
         var z = window.require('z');
@@ -133,16 +141,31 @@ function fake_login() {
         z.page.trigger('reload_chrome');
         z.page.trigger('logged_in');
 
-        require('views').reload();
+        window.require('views').reload();
     });
 }
+
+
+function waitForPageLoaded(cb) {
+    casper.waitForSelector('#splash-overlay.hide', cb, function() {}, 10000);
+}
+
+
+function done(test) {
+    casper.run(function() {
+        test.done();
+    });
+}
+
 
 module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
     capture: capture,
+    done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,
     startCasper: startCasper,
+    waitForPageLoaded: waitForPageLoaded,
 };
