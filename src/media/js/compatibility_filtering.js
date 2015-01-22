@@ -21,7 +21,7 @@ define('compatibility_filtering',
 
     var actual_dev = '';
     var actual_device = '';
-    var limit = 25;
+    var limit = 24;
     var device_filter_name;
     var key = 'device_filtering_preferences';
     var device_override;
@@ -55,7 +55,7 @@ define('compatibility_filtering',
         actual_device = capabilities.widescreen() ? 'tablet' : 'mobile';
     }
 
-    // For mobile phones, set limit to 10, otherwise use the default, 25.
+    // For mobile phones, set limit to 10, otherwise use the default, 24.
     if (actual_device == 'mobile' || actual_dev == 'firefoxos') {
         limit = 10;
     }
