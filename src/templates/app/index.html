@@ -217,7 +217,7 @@
           <dl class="app-metadata-categories">
             <dt>{{ _('Categories') }}</dt>
             {% for category in CATEGORIES %}
-              {% if indexOf(this.categories, category.slug) != -1 %}
+              {% if indexOf(CATEGORIES, category.slug) != -1 %}
                 {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
                 <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
               {% endif %}
