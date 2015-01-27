@@ -25,7 +25,6 @@ $desktop-tile-padding = 20px 50px;
 
 .app-list {
     list-style: none;
-    margin-top: 30px;
 
     // Masking element to cover the last row's bottom border.
     &:after {
@@ -69,8 +68,6 @@ $desktop-tile-padding = 20px 50px;
 
 .app-list-sort {
     display: none;
-    position: absolute;
-    top: 0;
     width: 100%;
 
     a {
@@ -106,6 +103,31 @@ $desktop-tile-padding = 20px 50px;
     }
 }
 
+.filters-content {
+    height: 40px;
+    line-height: 40px;
+}
+
+.expand-toggle {
+    background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
+    display: inline-block;
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 8px;
+    width: 84px;
+
+    &.active {
+        background-position: 0 0;
+    }
+}
+
+.overlay .expand-toggle,
+.search-results-header .expand-toggle,
+.expand-wrapper {
+    display: none;
+}
+
 @media $base-tablet {
     .app-list,
     .app-list.only-logged-in {
@@ -113,6 +135,7 @@ $desktop-tile-padding = 20px 50px;
     }
     .app-list {
         flex-wrap: wrap;
+        margin-top: 30px;
         position: relative;
 
         &.paginated .app-list-app:last-child {
@@ -134,13 +157,11 @@ $desktop-tile-padding = 20px 50px;
         width: $desktop-content;
     }
     .app-list-sort {
-        float: left;
         margin-right: 30px;
-        position: relative;
-        top: 15px;
         width: auto;
 
         a {
+            margin-top: 0;
             text-shadow: none;
         }
     }
@@ -160,6 +181,25 @@ $desktop-tile-padding = 20px 50px;
         &:last-child {
             border-right: 0;
         }
+    }
+    .filters-content {
+        margin-top: 15px;
+
+        > div {
+            float: left;
+        }
+    }
+    // App list expand toggle.
+    .expand-wrapper {
+        display: block;
+        margin: 0 30px;
+
+        .expand-toggle {
+            display: block;
+        }
+    }
+    .expand-toggle {
+        display: none;
     }
 }
 
