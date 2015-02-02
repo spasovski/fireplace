@@ -4,19 +4,28 @@
 #}
 <section class="review-buttons">
   <ul>
-    {% if user.logged_in() and response.user.has_rated %}
-      <li>
-        <a class="button review-button" data-app="{{ slug }}" data-edit-review
-           data-text="{{ _('Edit your Review') }}"
-           href="{{ url('app/ratings/edit', [slug]) }}">
-          {{ _('Edit your review') }}
-        </a>
-      </li>
-    {% else %}
+    {% if user.logged_in() and response.user.can_rate %}
+      {% if response.user.has_rated %}
+        <li>
+          <a class="button review-button" data-app="{{ slug }}" data-edit-review
+             data-text="{{ _('Edit your Review') }}"
+             href="{{ url('app/ratings/edit', [slug]) }}">
+            {{ _('Edit your review') }}
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a class="button review-button" data-app="{{ slug }}"
+             href="{{ url('app/ratings/add', [slug]) }}">
+             {{ _('Write a review') }}
+          </a>
+        </li>
+      {% endif %}
+    {% elif not user.logged_in() %}
       <li>
         <a class="button review-button" data-app="{{ slug }}"
            href="{{ url('app/ratings/add', [slug]) }}">
-           {{ _('Write a review') if user.logged_in() else _('Sign in to review') }}
+           {{ _('Sign in to review') }}
         </a>
       </li>
     {% endif %}
