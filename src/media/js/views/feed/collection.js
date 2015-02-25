@@ -4,6 +4,20 @@ define('views/feed/collection',
     'use strict';
     var gettext = l10n.gettext;
 
+    var entities = {
+        '&amp;': '&',
+        '&copy;': '©',
+        '&trade;': '™',
+        '&deg;': '°'
+    };
+
+    function replaceEntities(str) {
+        for (var key in entities) {
+            str = str.replace(key, entities[key]);
+        }
+        return str;
+    }
+
     return function(builder, args) {
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
@@ -14,7 +28,7 @@ define('views/feed/collection',
         });
 
         builder.onload('feed-collection', function(data) {
-            builder.z('title', utils.translate(data.name));
+            builder.z('title', replaceEntities(utils.translate(data.name)));
         });
     };
 });

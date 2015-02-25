@@ -32,7 +32,7 @@ var feedDetailPages = [
         path: '/feed/collection/coll-promo',
     },
     {
-        name: 'Collection Promo Desc',
+        name: 'Collection Promo &amp; Desc',
         path: '/feed/collection/coll-promo-desc',
     },
     {
@@ -65,6 +65,7 @@ feedDetailPages.forEach(function(feedDetailPage) {
                 test.assertVisible(
                     '.app-list',
                     'Check ' + feedDetailPage.name + ' page loads');
+                test.assertEquals(document.title.indexOf('&amp;'), -1);
             });
 
             helpers.done(test);
