@@ -2,8 +2,8 @@
     Shared feed landing view between Collections, Editorial Brands, Shelves.
 */
 define('views/feed_landing',
-    ['edbrands', 'core/l10n', 'core/utils'],
-    function(brands, l10n, utils) {
+    ['edbrands', 'error_messages', 'core/l10n', 'core/utils'],
+    function(brands, errors, l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -16,7 +16,8 @@ define('views/feed_landing',
 
         builder.start('feed/' + feedType + '.html', {
             landing: true,
-            slug: slug
+            slug: slug,
+            errors: errors
         });
 
         // Update page title once loaded.

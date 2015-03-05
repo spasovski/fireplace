@@ -26,6 +26,7 @@ body {
 
 #page {
     position: relative;
+    min-height: 400px;
 }
 
 #site-header,
@@ -137,11 +138,14 @@ noscript {
     clear: both;
 }
 
-.detailed-error, .fragment-error {
+.fragment-error {
     background: #fff;
 }
 
-.detailed-error {
+.error-page {
+    margin: 0 auto;
+    max-width: $desktop-content;
+    min-height: 300px;
     padding: 15px;
 }
 

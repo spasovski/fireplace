@@ -1,12 +1,3 @@
-<section class="main">
-  <div class="subheader">
-    <h1>404</h1>
-  </div>
-</section>
+{% from "_macros/error_page.html" import error_page %}
 
-<section class="main full prose">
-    <div>
-        <h1>{{ _('Oh no!') }}</h1>
-        <p>{{ _('The page you were looking for was not found.') }}</p>
-    </div>
-</section>
+{{ error_page() }}

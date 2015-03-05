@@ -1,0 +1,14 @@
+{% macro error_page(errors, code) %}
+  <section class="main">
+    <div class="subheader">
+      <h1>{{ errors[code].title or '404' }}</h1>
+    </div>
+  </section>
+
+  <section class="main full prose">
+    <div class="error-page">
+      <h1>{{ _('Oh no!') }}</h1>
+      <p>{{ errors[code].message or _('Sorry! We could not find the page you are looking for.') }}</p>
+    </div>
+  </section>
+{% endmacro %}
