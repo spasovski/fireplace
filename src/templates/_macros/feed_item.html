@@ -211,29 +211,49 @@
           {% endfor %}
         </ul>
       {% endif %}
-      <div class="feed-curve feed-landing-curve">
-        {% if feed_item.isBrand %}
-          <div class="brand-landing-header">
-            <div class="brand-landing-icon" data-brand-type="{{ feed_item.type }}">
-              <h3></h3>
-            </div>
-            <h1>{{ feed_item.name }}</h1>
-          </div>
-        {% else %}
-          {% if feed_item.background_image %}
-            <img class="feed-landing-bg-image"
-                 src="{{ feed_item.background_image_landing or feed_item.background_image }}"
-                 alt="" draggable="false" itemprop="contentURL">
-          {% endif %}
-          <div class="feed-landing-header-inner">
-            <h1>{{ feed_item.name|translate(feed_item)|safe }}</h1>
-            {% if feed_item.description %}
-              <p class="feed-landing-description">
-                {{ feed_item.description|translate(feed_item)|safe }}</p>
+      {% if feed_item.isShelf %}
+        <div class="feed-curve feed-shelf-landing-curve"></div>
+        <div class="feed-shelf-landing-inner">
+          <div class="c">
+            {% if feed_item.background_image %}
+              <img class="feed-landing-bg-image"
+                   src="{{ feed_item.background_image_landing or feed_item.background_image }}"
+                   alt="" draggable="false" itemprop="contentURL">
             {% endif %}
+            <div class="feed-shelf-info">
+              <h1>{{ feed_item.name|translate(feed_item)|safe }}</h1>
+              {% if feed_item.description %}
+                <p class="feed-landing-description">
+                  {{ feed_item.description|translate(feed_item)|safe }}</p>
+              {% endif %}
+            </div>
           </div>
-        {% endif %}
-      </div>
+        </div>
+      {% else %}
+        <div class="feed-curve feed-landing-curve">
+          {% if feed_item.isBrand %}
+            <div class="brand-landing-header">
+              <div class="brand-landing-icon" data-brand-type="{{ feed_item.type }}">
+                <h3></h3>
+              </div>
+              <h1>{{ feed_item.name }}</h1>
+            </div>
+          {% else %}
+            {% if feed_item.background_image %}
+              <img class="feed-landing-bg-image"
+                   src="{{ feed_item.background_image_landing or feed_item.background_image }}"
+                   alt="" draggable="false" itemprop="contentURL">
+            {% endif %}
+            <div class="feed-landing-header-inner">
+              <h1>{{ feed_item.name|translate(feed_item)|safe }}</h1>
+              {% if feed_item.description %}
+                <p class="feed-landing-description">
+                  {{ feed_item.description|translate(feed_item)|safe }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
   </div>
 
