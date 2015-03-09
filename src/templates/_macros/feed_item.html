@@ -225,7 +225,7 @@
                  src="{{ feed_item.background_image_landing or feed_item.background_image }}"
                  alt="" draggable="false" itemprop="contentURL">
           {% endif %}
-          <div class="feed-landing-header-inner">
+          <div class="feed-landing-header-inner {{ 'has-desc' if feed_item.description }}">
             <h1>{{ feed_item.name|translate(feed_item)|safe }}</h1>
             {% if feed_item.description %}
               <p class="feed-landing-description">

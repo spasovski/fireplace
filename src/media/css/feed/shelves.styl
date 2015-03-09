@@ -93,6 +93,35 @@ shelf_curve_color($color) {
 
 [data-shelf-landing] {
     collection_background_colors($default_shelf_color);
+
+    .feed-landing-bg-image {
+        bottom: 40px;
+        margin-right: 30px;
+        position: relative;
+    }
+    .feed-landing-header-desktop {
+        padding-top: 30px;
+
+        h1 {
+            font-size: 30px;
+            font-weight: 100;
+            line-height: 40px;
+            min-width: 500px;
+        }
+        .feed-landing-description {
+            margin: 0;
+            font-weight: 100;
+        }
+    }
+    .feed-landing-curve {
+        padding-bottom: 0;
+    }
+    .feed-landing-bg-image + .feed-landing-header-inner.has-desc {
+        margin-top: 20px;
+    }
+    .feed-landing-header-mobile h1 {
+        top: 0;
+    }
 }
 [data-shelf-landing-carrier="telefonica"] {
     collection_background_colors($movistar_color);
@@ -120,4 +149,33 @@ shelf_curve_color($color) {
 }
 [data-shelf-landing-carrier="mtn"] {
     collection_background_colors($mtn_color);
+}
+
+@media $base-tablet {
+    [data-shelf-landing] {
+        .feed-landing-header-mobile {
+            display: flex;
+
+            h1 {
+                font-size: 30px;
+                font-weight: 100;
+                line-height: 40px;
+                top: -7px;
+            }
+        }
+        .feed-landing-header-desktop {
+            display: none;
+        }
+    }
+}
+
+@media $base-desktop {
+    [data-shelf-landing] {
+        .feed-landing-header-mobile {
+            display: none;
+        }
+        .feed-landing-header-desktop {
+            display: flex;
+        }
+    }
 }
