@@ -1,0 +1,17 @@
+@import '../lib';
+
+.html-rtl {
+    .site-header > nav {
+        text-align: right;
+    }
+    .header-button.settings {
+        left: 20px;
+        right: auto;
+    }
+}
+
+@media $base-tablet {
+    .html-rtl #search-q:focus {
+        padding-right: 34px;
+    }
+}
