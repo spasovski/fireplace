@@ -90,14 +90,17 @@ define('previews',
             // Initialize the bar position.
             updatePreviewBar($bars, slider);
 
-            // Add scroll buttons.
-            var buttons = previewButtons.attach(slider, $slider);
-
             if (document.documentElement.getAttribute('dir') === 'rtl') {
+                // Add scroll buttons.
+                var buttons = previewButtons.attach(slider, $slider, {rtl: true});
+
                 for (var i = 0; i < numBars - 1; i++) {
                     // Start at the end for RTL.
                     buttons.nextBtn.click();
                 }
+            } else {
+                // Add scroll buttons.
+                previewButtons.attach(slider, $slider);
             }
         }
     }

@@ -14,7 +14,7 @@ define('previews-buttons',
     var isDesktop = caps.device_type() === 'desktop';
 
     function attach(slider, $container, opts) {
-        if (!isDesktop) {
+        if (!isDesktop && !opts.rtl) {
             return;
         }
         var isLightbox = opts && opts.isLightbox;
@@ -28,6 +28,10 @@ define('previews-buttons',
         function setPreviewBtnState() {
             // Toggles whether buttons are hidden or disabled.
             $previewBtns.addClass('arrow-btn-disabled');
+
+            if (!isDesktop && opts.rtl) {
+                $previewBtns.addClass('js-hidden');
+            }
 
             var hasButton = false;
             if (slider.hasNext() &&
